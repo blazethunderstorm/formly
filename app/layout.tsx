@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
         <body>
           <ThemeProvider
             attribute="class"
@@ -36,6 +37,7 @@ export default function RootLayout({
             storageKey="form-builder-theme"
           >
             {children}
+            <Toaster/>
           </ThemeProvider>
         </body>
       </html>
